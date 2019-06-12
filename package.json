@@ -1,0 +1,29 @@
+{
+  "name": "asylumconnect-catalog",
+  "version": "0.0.1",
+  "description": "A searchable catalog of resources for LGBT+ Asylees ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ragtagteam/asylumconnect-catalog.git"
+  },
+  "author": "Ragtag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ragtagteam/asylumconnect-catalog/issues"
+  },
+  "homepage": "https://github.com/Ragtagteam/asylumconnect-catalog#readme",
+  "dependencies": {
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+   "dev": "next",
+   "build": "next build",
+   "start": "next start"
+ }
+}

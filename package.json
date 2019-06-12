@@ -4,7 +4,9 @@
   "description": "A searchable catalog of resources for LGBT+ Asylees ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/Ragtagteam/asylumconnect-catalog#readme",
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "express": "^4.17.1",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -33,10 +36,5 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.17.1"
-  },
-  "scripts": {
-   "dev": "next",
-   "build": "next build",
-   "start": "next start"
- }
+  }
 }

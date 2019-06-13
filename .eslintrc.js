@@ -1,5 +1,6 @@
 var WARNING = 1;
 var DISABLE = 0;
+
 module.exports = {
   root: true,
 
@@ -47,9 +48,6 @@ module.exports = {
     'no-class-assign': DISABLE,
     'react/require-default-props': DISABLE,
     'import/no-mutable-exports': DISABLE,
-    'jsx-a11y/no-noninteractive-element-to-interactive-role': DISABLE,
-    'jsx-a11y/click-events-have-key-events': DISABLE,
-    'jsx-a11y/no-static-element-interactions': DISABLE,
     'react/no-unescaped-entities': DISABLE,
     'arrow-body-style': DISABLE,
     'no-debugger': DISABLE,

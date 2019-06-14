@@ -1,24 +1,11 @@
-const express = require("express");
-const next = require("next");
+// We jump through this little hoop to allow us to use ES6 syntax in our express
+// backend code, without it we'd have a mix of imports/requires in the project.
+const babelRegister = require("@babel/register");
 
-const routes = require("./routes");
-
-const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handler = routes.getRequestHandler(app);
-
-app.prepare().then(() => {
-  const server = express();
-
-  server.post("/login", (req, res) => {
-    // TODO: This is where we'll call the API to do login and return a JWT
-    res.end(JSON.stringify({}));
-  });
-
-  server.use(handler).listen(port, err => {
-    if (err) throw err;
-    /* eslint-disable-next-line no-console */
-    console.log(`> Ready on http://localhost:${port}`);
-  });
+babelRegister({
+  presets: ["@babel/preset-env"],
+  ignore: ["./node_modules", ".next"]
 });
+
+// Import the rest of our application.
+module.exports = require("./nextjs-server.js");

@@ -1,5 +1,5 @@
-const routes = require("next-routes");
+const routes = require('next-routes');
 
 module.exports = routes()
-  .add("index")
-  .add("account");
+  .add('index')
+  .add('account');

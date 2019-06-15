@@ -1,15 +1,15 @@
-import express from "express";
-import next from "next";
-import "regenerator-runtime/runtime";
-import bodyParser from "body-parser";
+import express from 'express';
+import next from 'next';
+import 'regenerator-runtime/runtime';
+import bodyParser from 'body-parser';
 
-import routes from "./routes";
-import Auth from "./api/Auth";
+import routes from './routes';
+import Auth from './api/Auth';
 
-require("dotenv").config({ path: "./.env" });
+require('dotenv').config({ path: './.env' });
 
 const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handler = routes.getRequestHandler(app);
 
@@ -19,25 +19,25 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
   server.use(
     bodyParser.urlencoded({
-      extended: true
-    })
+      extended: true,
+    }),
   );
 
-  server.post("/login", async (req, res) => {
+  server.post('/login', async (req, res) => {
     const authAPI = new Auth();
     const response = await authAPI
       .login(req)
-      .then(result => {
+      .then((result) => {
         return result;
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
 
     res.end(JSON.stringify(response));
   });
 
-  server.use(handler).listen(port, err => {
+  server.use(handler).listen(port, (err) => {
     if (err) throw err;
     /* eslint-disable-next-line no-console */
     console.log(`> Ready on http://localhost:${port}`);

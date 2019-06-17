@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 import { Link } from '../routes';
 
 import Header from '../components/Header';
@@ -49,19 +52,24 @@ class IndexPage extends PureComponent {
         </Link>
         {/* Sticking a temporary form in here until we have a modal working */}
         <form onSubmit={this.onSubmit}>
-          <label htmlFor="username">
-            Username
-            <input type="text" id="username" onChange={this.onInputChange} />
-          </label>
-          <label htmlFor="password">
-            Password
-            <input
-              type="password"
-              id="password"
-              onChange={this.onInputChange}
-            />
-          </label>
-          <button type="submit">Login</button>
+          <TextField
+            required
+            id="username"
+            label="Username"
+            onChange={this.onInputChange}
+            margin="normal"
+          />
+          <TextField
+            required
+            id="password"
+            label="Password"
+            onChange={this.onInputChange}
+            margin="normal"
+            type="password"
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Login
+          </Button>
         </form>
       </div>
     );

@@ -4,6 +4,9 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import flush from 'styled-jsx/server';
 import theme from '../components/theme';
 
+// Components
+import Footer from '../components/Footer';
+
 class AsylumConnectDocument extends Document {
   static async getInitialProps(ctx) {
     // Resolution order
@@ -69,6 +72,7 @@ class AsylumConnectDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <Footer />
         </body>
       </html>
     );

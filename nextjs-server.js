@@ -23,6 +23,8 @@ app.prepare().then(() => {
     }),
   );
 
+  server.use(express.static('public'));
+
   server.post('/login', async (req, res) => {
     const authAPI = new Auth();
     const response = await authAPI

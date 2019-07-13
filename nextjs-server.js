@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 
 import routes from './routes';
 import Auth from './api/Auth';
+import Organizations from './api/Organizations';
 
 require('dotenv').config({ path: './.env' });
 
@@ -29,6 +30,20 @@ app.prepare().then(() => {
     const authAPI = new Auth();
     const response = await authAPI
       .login(req)
+      .then((result) => {
+        return result;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    res.end(JSON.stringify(response));
+  });
+
+  server.get('/organizations', async (req, res) => {
+    const orgsAPI = new Organizations();
+    const response = await orgsAPI
+      .search({ queryText: req.query.search, page: req.query.page })
       .then((result) => {
         return result;
       })

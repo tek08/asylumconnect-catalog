@@ -7,6 +7,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { initializeStore } from '../store';
 import theme from '../components/theme';
 
+// Components
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 class AsylumConnect extends App {
   static async getInitialProps() {
     // Where we'll do async calls for initial data
@@ -29,7 +33,9 @@ class AsylumConnect extends App {
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <Header />
             <Component {...pageProps} />
+            <Footer />
           </ThemeProvider>
         </Provider>
       </Container>

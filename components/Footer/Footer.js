@@ -4,34 +4,31 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/styles';
+import theme from '../theme';
 
 const styles = {
-  footer: {
-    color: '#000'
-  },
-  footerLink: {
-    color: '#000'
-  },
-  footerStrong: {
-    fontWeight: '700',
-    textDecoration: 'none'
-  },
-  footerTop: {
-    padding: '30px 0',
-    backgroundColor: '#e9e9e9',
-    fontSize: '1.2em'
-  },
-  footerBottom: {
-    padding: '30px 0px',
-    backgroundColor: '#f7f7f7',
-  }
+    footerLink: {
+      color: theme.palette.primary.dark
+    },
+    footerStrong: {
+      fontWeight: '700',
+      textDecoration: 'none'
+    },
+    footerTop: {
+      padding: '30px 0',
+      backgroundColor: theme.palette.background.grey,
+      fontSize: '1.2em',
+    },
+    footerBottom: {
+      padding: '30px 0px',
+    }
 }
 
 const Footer = (props) => {
   const { classes } = props;
 
   return (
-    <footer className={classes.footer}>
+    <footer>
       <div className={classes.footerTop}>
         <Container maxWidth="md">
           <Grid container>

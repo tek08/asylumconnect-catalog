@@ -4,6 +4,9 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import flush from 'styled-jsx/server';
 import theme from '../components/theme';
 
+// Components
+import Footer from '../components/Footer';
+
 class AsylumConnectDocument extends Document {
   static async getInitialProps(ctx) {
     // Resolution order
@@ -65,6 +68,7 @@ class AsylumConnectDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"></link>
         </Head>
         <body>
           <Main />

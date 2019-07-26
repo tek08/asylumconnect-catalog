@@ -1,7 +1,7 @@
 addReviewers: true
 addAssignees: false
 reviewers:
-  - jolyonruss
+  - seans887
   - dryan
 skipKeywords:
   - wip

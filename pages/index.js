@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import { Link } from '../routes';
-
-import Header from '../components/Header';
 import { accountThunks } from '../store/account';
 
 class IndexPage extends PureComponent {
@@ -43,7 +41,6 @@ class IndexPage extends PureComponent {
 
     return (
       <div>
-        <Header />
         <h1>Asylum Connect Catalog</h1>
         {/* Just render the JWT for now */}
         <h3>{jwt}</h3>

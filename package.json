@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Ragtagteam/asylumconnect-catalog#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "@material-ui/core": "^4.1.1",
     "@material-ui/styles": "^4.1.1",
@@ -48,7 +49,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
     "babel-jest": "^24.8.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",

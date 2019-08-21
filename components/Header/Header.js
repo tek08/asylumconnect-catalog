@@ -51,16 +51,19 @@ const styles = {
   },
 };
 
+const MOBILE_WIDTH_MAX = 950;
+
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      width: 600,
+      width: MOBILE_WIDTH_MAX,
     };
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowSizeChange);
+    this.handleWindowSizeChange();
   }
 
   handleWindowSizeChange = () => {
@@ -75,7 +78,7 @@ class Header extends React.Component {
     const { classes } = this.props;
     const { width } = this.state;
 
-    const isMobile = width <= 950;
+    const isMobile = width < MOBILE_WIDTH_MAX;
 
     return (
       <header>

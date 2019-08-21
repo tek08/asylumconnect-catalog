@@ -1,28 +1,28 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-import { Grid, Fab } from '@material-ui/core';
+import { Fab, Grid } from '@material-ui/core';
 import theme from '../theme';
 
 const styles = {
   headerGrid: {
-    padding: '10px',
     alignItems: 'center',
+    padding: '10px',
     textAlign: 'left',
   },
   headerLink: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    fontSize: '13px',
-    textDecoration: 'none',
     color: 'rgba(29, 31, 35, 1)',
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '13px',
+    fontWeight: 600,
     letterSpacing: '-0.48px',
+    textDecoration: 'none',
+    textTransform: 'uppercase',
   },
   viewYourFavoritesLink: {
-    fontWeight: 600,
-    fontSize: '14px',
-    textDecoration: 'none',
     color: '#5073B3',
+    fontSize: '14px',
+    fontWeight: 600,
+    textDecoration: 'none',
   },
   findResourcesButton: {
     width: '100%',
@@ -34,9 +34,9 @@ const styles = {
     textDecoration: 'none',
   },
   loginLinkGridItem: {
+    alignItems: 'middle',
     borderRight: 'solid 0.1em rgb(0,0,0,0.12)',
     height: '2em',
-    alignItems: 'middle',
   },
   signupLinkGridItem: {
     fontSize: '14px',

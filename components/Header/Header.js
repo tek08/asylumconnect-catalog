@@ -1,6 +1,14 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Fab, Grid } from '@material-ui/core';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import theme from '../theme';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
+
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -47,6 +55,7 @@ const styles = {
   },
   signupLinkGridItem: {
     paddingLeft: '5px',
+    whitespace: 'nowrap',
   },
   leftMostGridItem: {
     textAlign: 'left',
@@ -54,16 +63,37 @@ const styles = {
   rightMostGridItem: {
     textAlign: 'right',
   },
+  clickableSubheaderText: {
+    cursor: 'pointer',
+    fontWeight: 600,
+    textDecoration: 'underline',
+  },
+  closeDialogX: {
+    float: 'right',
+    cursor: 'pointer',
+  },
 };
 
 const MOBILE_WIDTH_MAX = 1000;
+
+const redTheme = createMuiTheme({ palette: { primary: red } });
+
 
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
       width: MOBILE_WIDTH_MAX,
+      isDisclaimerDialogOpen: false,
+      isUserPrivacyStatementDialogOpen: false,
     };
+
+    this.openDisclaimerDialog = this.openDisclaimerDialog.bind(this);
+    this.closeDisclaimerDialog = this.closeDisclaimerDialog.bind(this);
+
+    this.closeUserPrivacyStatement = this.closeUserPrivacyStatement.bind(this);
+    this.openUserPrivacyStatement = this.openUserPrivacyStatement.bind(this);
+
   }
 
   componentDidMount() {
@@ -74,6 +104,30 @@ class Header extends React.Component {
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
+
+  closeDisclaimerDialog() {
+    this.setState({
+      isDisclaimerDialogOpen: false,
+    });
+  }
+
+  openDisclaimerDialog() {
+    this.setState({
+      isDisclaimerDialogOpen: true,
+    });
+  }
+
+  closeUserPrivacyStatement() {
+    this.setState({
+      isUserPrivacyStatementDialogOpen: false,
+    });
+  }
+
+  openUserPrivacyStatement() {
+    this.setState({
+      isUserPrivacyStatementDialogOpen: true,
+    });
+  }
 
   componentDidUnmount() {
     window.removeEventListener('resize', this.handleWindowSizeChange);
@@ -168,6 +222,80 @@ class Header extends React.Component {
             </a>
           </Grid>
         </Grid>
+        <Grid container>
+          <Grid item xs={12} style={{
+            textAlign: 'center', backgroundColor: '#5073B3', padding: '20px 0px',
+            color: 'white'
+          }}>
+            Asylum seekers contact service providers at their own risk.<br />
+            Please read our complete <span className={classes.clickableSubheaderText} onClick={this.openDisclaimerDialog}>Disclaimer</span> and&nbsp;
+            <span className={classes.clickableSubheaderText} onClick={this.openUserPrivacyStatement}>User Privacy Statement</span> before using our catalog.
+          </Grid>
+        </Grid>
+
+        <Dialog onClose={this.closeDisclaimerDialog} aria-labelledby="customized-dialog-title" open={this.state.isDisclaimerDialogOpen}>
+          <DialogTitle id="customized-dialog-title" onClose={this.closeDisclaimerDialog} style={{textAlign: 'center'}}>
+            AsylumConnect Disclaimer
+            <div className={classes.closeDialogX} onClick={this.closeDisclaimerDialog}>
+              x
+            </div>
+          </DialogTitle>
+          <DialogContent>
+            The AsylumConnect team will do its best to confirm basic facts about service providers listed on this
+            website. However, we lack the necessary resources to fully vet service providers and make no representations
+            regarding the viability or capabilities of any such providers. Consequently, AsylumConnect assumes no
+            responsibility for the actions of providers listed on this website and asylum seekers who contact any such
+            providers do so at their own risk.
+          </DialogContent>
+          <DialogContent style={{textAlign: 'center'}}>
+            <MuiThemeProvider theme={redTheme}>
+              <Fab
+                variant="extended"
+                size="small"
+                color="primary"
+                className={classes.findResourcesButton}
+                style={{width: '100px'}}
+                onClick={this.closeDisclaimerDialog}
+              >
+                Ok
+              </Fab>
+            </MuiThemeProvider>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog onClose={this.closeUserPrivacyStatement} aria-labelledby="customized-dialog-title" open={this.state.isUserPrivacyStatementDialogOpen}>
+          <DialogTitle id="customized-dialog-title" onClose={this.closeUserPrivacyStatement} style={{textAlign: 'center'}}>
+            <div className={classes.closeDialogX} onClick={this.closeUserPrivacyStatement}>
+              x
+            </div>
+            <div style={{break: 'left'}}>
+              AsylumConnect User Privacy Statement
+            </div>
+          </DialogTitle>
+          <DialogContent>
+            The AsylumConnect catalog uses Google Analytics with <a href="https://support.google.com/analytics/answer/2763052?hl=en">anonymized IP addresses</a> to help
+            analyze how visitors use this site. Google Analytics uses cookies, which are small text files placed on your computer, to collect
+            standard visitor behavior information in an anonymous form. No personally identifiable information is
+            collected about you, unless you explicitly submit that information on this website. If you would like to
+            opt-out of Google Analytics, you may do so by clicking <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
+          </DialogContent>
+          <DialogContent style={{textAlign: 'center'}}>
+            <MuiThemeProvider theme={redTheme}>
+              <Fab
+                variant="extended"
+                size="small"
+                color="primary"
+                className={classes.findResourcesButton}
+                style={{width: '100px'}}
+                onClick={this.closeUserPrivacyStatement}
+              >
+                Ok
+              </Fab>
+            </MuiThemeProvider>
+          </DialogContent>
+        </Dialog>
+
+
       </header>
     );
   }

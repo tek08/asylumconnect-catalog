@@ -265,11 +265,9 @@ class Header extends React.Component {
 
         <Dialog onClose={this.closeUserPrivacyStatement} aria-labelledby="customized-dialog-title" open={this.state.isUserPrivacyStatementDialogOpen}>
           <DialogTitle id="customized-dialog-title" onClose={this.closeUserPrivacyStatement} style={{textAlign: 'center'}}>
+            AsylumConnect User Privacy Statement
             <div className={classes.closeDialogX} onClick={this.closeUserPrivacyStatement}>
               x
-            </div>
-            <div style={{break: 'left'}}>
-              AsylumConnect User Privacy Statement
             </div>
           </DialogTitle>
           <DialogContent>

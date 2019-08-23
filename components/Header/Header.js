@@ -4,8 +4,8 @@ import { Fab, Grid } from '@material-ui/core';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import theme from '../theme';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 import { red, blue } from '@material-ui/core/colors';
 
 
@@ -72,12 +72,23 @@ const styles = {
     float: 'right',
     cursor: 'pointer',
   },
+  subheaderText: {
+    textAlign: 'center',
+    backgroundColor: '#5073B3',
+    padding: '20px 0px',
+    color: 'white',
+  },
+  dialogOkButtonContainer: {
+    textAlign: 'center',
+  },
+  dialogTitle: {
+    textAlign: 'center',
+  }
 };
 
 const MOBILE_WIDTH_MAX = 1000;
 
 const redTheme = createMuiTheme({ palette: { primary: red } });
-
 
 class Header extends React.Component {
   constructor() {
@@ -93,7 +104,6 @@ class Header extends React.Component {
 
     this.closeUserPrivacyStatement = this.closeUserPrivacyStatement.bind(this);
     this.openUserPrivacyStatement = this.openUserPrivacyStatement.bind(this);
-
   }
 
   componentDidMount() {
@@ -223,10 +233,7 @@ class Header extends React.Component {
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item xs={12} style={{
-            textAlign: 'center', backgroundColor: '#5073B3', padding: '20px 0px',
-            color: 'white'
-          }}>
+          <Grid item xs={12} className={classes.subheaderText}>
             Asylum seekers contact service providers at their own risk.<br />
             Please read our complete <span className={classes.clickableSubheaderText} onClick={this.openDisclaimerDialog}>Disclaimer</span> and&nbsp;
             <span className={classes.clickableSubheaderText} onClick={this.openUserPrivacyStatement}>User Privacy Statement</span> before using our catalog.
@@ -234,7 +241,7 @@ class Header extends React.Component {
         </Grid>
 
         <Dialog onClose={this.closeDisclaimerDialog} aria-labelledby="customized-dialog-title" open={this.state.isDisclaimerDialogOpen}>
-          <DialogTitle id="customized-dialog-title" onClose={this.closeDisclaimerDialog} style={{textAlign: 'center'}}>
+          <DialogTitle id="customized-dialog-title" onClose={this.closeDisclaimerDialog} className={classes.dialogTitle}>
             AsylumConnect Disclaimer
             <div className={classes.closeDialogX} onClick={this.closeDisclaimerDialog}>
               x
@@ -247,15 +254,14 @@ class Header extends React.Component {
             responsibility for the actions of providers listed on this website and asylum seekers who contact any such
             providers do so at their own risk.
           </DialogContent>
-          <DialogContent style={{textAlign: 'center'}}>
+          <DialogContent className={classes.dialogOkButtonContainer}>
             <MuiThemeProvider theme={redTheme}>
               <Fab
-                variant="extended"
-                size="small"
                 color="primary"
-                className={classes.findResourcesButton}
+                size="small"
                 style={{width: '100px'}}
                 onClick={this.closeDisclaimerDialog}
+                variant="extended"
               >
                 Ok
               </Fab>
@@ -264,7 +270,7 @@ class Header extends React.Component {
         </Dialog>
 
         <Dialog onClose={this.closeUserPrivacyStatement} aria-labelledby="customized-dialog-title" open={this.state.isUserPrivacyStatementDialogOpen}>
-          <DialogTitle id="customized-dialog-title" onClose={this.closeUserPrivacyStatement} style={{textAlign: 'center'}}>
+          <DialogTitle id="customized-dialog-title" onClose={this.closeUserPrivacyStatement} className={classes.dialogTitle}>
             AsylumConnect User Privacy Statement
             <div className={classes.closeDialogX} onClick={this.closeUserPrivacyStatement}>
               x
@@ -277,15 +283,14 @@ class Header extends React.Component {
             collected about you, unless you explicitly submit that information on this website. If you would like to
             opt-out of Google Analytics, you may do so by clicking <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
           </DialogContent>
-          <DialogContent style={{textAlign: 'center'}}>
+          <DialogContent className={classes.dialogOkButtonContainer}>
             <MuiThemeProvider theme={redTheme}>
               <Fab
-                variant="extended"
-                size="small"
                 color="primary"
-                className={classes.findResourcesButton}
-                style={{width: '100px'}}
                 onClick={this.closeUserPrivacyStatement}
+                size="small"
+                style={{width: '100px'}}
+                variant="extended"
               >
                 Ok
               </Fab>

@@ -124,9 +124,7 @@ class Header extends React.Component {
                       Contact Us
                     </a>
                   </ListItemText>
-
                 </ListItem>
-
               </List>
             </Grid>
           )}

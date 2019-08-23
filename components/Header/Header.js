@@ -88,6 +88,13 @@ const MOBILE_WIDTH_MAX = 1000;
 
 const redTheme = createMuiTheme({ palette: { primary: red } });
 
+function isClickEventOrEnterOrSpaceKeydown(event) {
+  return (
+    event.type !== 'keydown' ||
+    (event.type === 'keydown' && (event.keyCode === 32 || event.keyCode === 13))
+  );
+}
+
 class Header extends React.Component {
   constructor() {
     super();
@@ -109,36 +116,44 @@ class Header extends React.Component {
     this.handleWindowSizeChange();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
 
-  closeDisclaimerDialog() {
-    this.setState({
-      isDisclaimerDialogOpen: false,
-    });
+  openDisclaimerDialog(event) {
+    if (isClickEventOrEnterOrSpaceKeydown(event)) {
+      this.setState({
+        isDisclaimerDialogOpen: true,
+      });
+    }
   }
 
-  openDisclaimerDialog() {
-    this.setState({
-      isDisclaimerDialogOpen: true,
-    });
+  closeDisclaimerDialog(event) {
+    if (isClickEventOrEnterOrSpaceKeydown(event)) {
+      this.setState({
+        isDisclaimerDialogOpen: false,
+      });
+    }
   }
 
-  closeUserPrivacyStatement() {
-    this.setState({
-      isUserPrivacyStatementDialogOpen: false,
-    });
+  openUserPrivacyStatement(event) {
+    if (isClickEventOrEnterOrSpaceKeydown(event)) {
+      this.setState({
+        isUserPrivacyStatementDialogOpen: true,
+      });
+    }
   }
 
-  openUserPrivacyStatement() {
-    this.setState({
-      isUserPrivacyStatementDialogOpen: true,
-    });
-  }
-
-  componentDidUnmount() {
-    window.removeEventListener('resize', this.handleWindowSizeChange);
+  closeUserPrivacyStatement(event) {
+    if (isClickEventOrEnterOrSpaceKeydown(event)) {
+      this.setState({
+        isUserPrivacyStatementDialogOpen: false,
+      });
+    }
   }
 
   render() {
@@ -237,19 +252,25 @@ class Header extends React.Component {
             Asylum seekers contact service providers at their own risk.
             <br />
             Please read our complete&nbsp;
-            <a
+            <span
+              tabIndex="0"
               className={classes.clickableSubheaderText}
               onClick={this.openDisclaimerDialog}
+              onKeyDown={this.openDisclaimerDialog}
+              role="link"
             >
               Disclaimer
-            </a>
+            </span>
             &nbsp;and&nbsp;
-            <a
+            <span
+              tabIndex="0"
               className={classes.clickableSubheaderText}
               onClick={this.openUserPrivacyStatement}
+              onKeyDown={this.openUserPrivacyStatement}
+              role="link"
             >
               User Privacy Statement
-            </a>
+            </span>
             &nbsp;before using our catalog.
           </Grid>
         </Grid>
@@ -266,6 +287,9 @@ class Header extends React.Component {
             <div
               className={classes.closeDialogX}
               onClick={this.closeDisclaimerDialog}
+              onKeyDown={this.closeDisclaimerDialog}
+              role="button"
+              tabIndex="0"
             >
               x
             </div>
@@ -304,6 +328,9 @@ class Header extends React.Component {
             <div
               className={classes.closeDialogX}
               onClick={this.closeUserPrivacyStatement}
+              onKeyDown={this.closeUserPrivacyStatement}
+              role="button"
+              tabIndex="0"
             >
               x
             </div>

@@ -71,13 +71,13 @@ class Header extends React.Component {
     this.handleWindowSizeChange();
   }
 
-  handleWindowSizeChange = () => {
-    this.setState({ width: window.innerWidth });
-  };
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleWindowSizeChange);
   }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
 
   render() {
     const { classes } = this.props;

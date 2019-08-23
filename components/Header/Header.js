@@ -1,7 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Fab, Grid } from '@material-ui/core';
-import theme from '../theme';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const styles = {
   headerGrid: {
@@ -17,6 +19,7 @@ const styles = {
     letterSpacing: '-0.48px',
     textDecoration: 'none',
     textTransform: 'uppercase',
+    whiteSpace: 'nowrap',
   },
   viewYourFavoritesLink: {
     color: '#5073B3',
@@ -25,13 +28,15 @@ const styles = {
     textDecoration: 'none',
   },
   findResourcesButton: {
-    width: '100%',
+    width: '200px',
+    textAlign: 'center',
   },
   loginAndSignUpLink: {
     color: 'black',
     fontWeight: 400,
     fontSize: '13px',
     textDecoration: 'none',
+    whiteSpace: 'nowrap',
   },
   loginLinkGridItem: {
     alignItems: 'middle',
@@ -51,7 +56,7 @@ const styles = {
   },
 };
 
-const MOBILE_WIDTH_MAX = 950;
+const MOBILE_WIDTH_MAX = 1000;
 
 class Header extends React.Component {
   constructor() {
@@ -78,12 +83,12 @@ class Header extends React.Component {
     const { classes } = this.props;
     const { width } = this.state;
 
-    const isMobile = width < MOBILE_WIDTH_MAX;
+    const isWideEnoughToShowHeaderLinks = width >= MOBILE_WIDTH_MAX;
 
     return (
       <header>
         <Grid container className={classes.headerGrid}>
-          <Grid item xs={!isMobile ? 1 : 3}>
+          <Grid item xs={1}>
             <img
               src="/images/asylum-connect-logo.png"
               title="Asylum Connect"
@@ -91,36 +96,42 @@ class Header extends React.Component {
               style={{ width: '65px' }}
             />
           </Grid>
-          {!isMobile && (
-            <Grid item xs={1}>
-              <a href="/aboutUs" className={classes.headerLink}>
-                About Us
-              </a>
+
+          {isWideEnoughToShowHeaderLinks && (
+            <Grid item xs={4}>
+              <List component="nav">
+                <ListItem component="div">
+                  <ListItemText>
+                    <a href="/aboutUs" className={classes.headerLink}>
+                      About Us
+                    </a>
+                  </ListItemText>
+
+                  <ListItemText>
+                    <a href="/takeAction" className={classes.headerLink}>
+                      Take Action
+                    </a>
+                  </ListItemText>
+
+                  <ListItemText>
+                    <a href="/getHelp" className={classes.headerLink}>
+                      Get Help
+                    </a>
+                  </ListItemText>
+
+                  <ListItemText>
+                    <a href="/contactUs" className={classes.headerLink}>
+                      Contact Us
+                    </a>
+                  </ListItemText>
+
+                </ListItem>
+
+              </List>
             </Grid>
           )}
-          {!isMobile && (
+          {isWideEnoughToShowHeaderLinks && (
             <Grid item xs={1}>
-              <a href="/takeAction" className={classes.headerLink}>
-                Take Action
-              </a>
-            </Grid>
-          )}
-          {!isMobile && (
-            <Grid item xs={1}>
-              <a href="/getHelp" className={classes.headerLink}>
-                Get Help
-              </a>
-            </Grid>
-          )}
-          {!isMobile && (
-            <Grid item xs={1}>
-              <a href="/contactUs" className={classes.headerLink}>
-                Contact Us
-              </a>
-            </Grid>
-          )}
-          {!isMobile && (
-            <Grid item xs={2}>
               <Fab
                 variant="extended"
                 size="large"
@@ -131,10 +142,10 @@ class Header extends React.Component {
               </Fab>
             </Grid>
           )}
-          <Grid item xs={!isMobile ? 2 : 3}>
+          <Grid item xs={isWideEnoughToShowHeaderLinks ? 1 : 4}>
             {/* TODO(tek08): Add translate object here */}
           </Grid>
-          <Grid item xs={!isMobile ? 1 : 3}>
+          <Grid item xs={isWideEnoughToShowHeaderLinks ? 3 : 5}>
             <Grid container>
               <Grid item xs={6} className={classes.loginLinkGridItem}>
                 <a href="/" className={classes.loginAndSignUpLink}>
@@ -148,7 +159,7 @@ class Header extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={!isMobile ? 2 : 3} className={classes.rightMostGridItem}>
+          <Grid item xs={2} className={classes.rightMostGridItem}>
             <a
               href="/viewYourFavorites"
               className={classes.viewYourFavoritesLink}

@@ -81,7 +81,7 @@ const styles = {
   },
   dialogTitle: {
     textAlign: 'center',
-  }
+  },
 };
 
 const MOBILE_WIDTH_MAX = 1000;
@@ -143,7 +143,11 @@ class Header extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { width } = this.state;
+    const {
+      isDisclaimerDialogOpen,
+      isUserPrivacyStatementDialogOpen,
+      width,
+    } = this.state;
 
     const isWideEnoughToShowHeaderLinks = width >= MOBILE_WIDTH_MAX;
 
@@ -186,9 +190,7 @@ class Header extends React.Component {
                       Contact Us
                     </a>
                   </ListItemText>
-
                 </ListItem>
-
               </List>
             </Grid>
           )}
@@ -232,16 +234,39 @@ class Header extends React.Component {
         </Grid>
         <Grid container>
           <Grid item xs={12} className={classes.subheaderText}>
-            Asylum seekers contact service providers at their own risk.<br />
-            Please read our complete <span className={classes.clickableSubheaderText} onClick={this.openDisclaimerDialog}>Disclaimer</span> and&nbsp;
-            <span className={classes.clickableSubheaderText} onClick={this.openUserPrivacyStatement}>User Privacy Statement</span> before using our catalog.
+            Asylum seekers contact service providers at their own risk.
+            <br />
+            Please read our complete&nbsp;
+            <a
+              className={classes.clickableSubheaderText}
+              onClick={this.openDisclaimerDialog}
+            >
+              Disclaimer
+            </a>
+            &nbsp;and&nbsp;
+            <a
+              className={classes.clickableSubheaderText}
+              onClick={this.openUserPrivacyStatement}
+            >
+              User Privacy Statement
+            </a>
+            &nbsp;before using our catalog.
           </Grid>
         </Grid>
 
-        <Dialog onClose={this.closeDisclaimerDialog} aria-labelledby="customized-dialog-title" open={this.state.isDisclaimerDialogOpen}>
-          <DialogTitle id="customized-dialog-title" onClose={this.closeDisclaimerDialog} className={classes.dialogTitle}>
+        <Dialog
+          onClose={this.closeDisclaimerDialog}
+          open={isDisclaimerDialogOpen}
+        >
+          <DialogTitle
+            onClose={this.closeDisclaimerDialog}
+            className={classes.dialogTitle}
+          >
             AsylumConnect Disclaimer
-            <div className={classes.closeDialogX} onClick={this.closeDisclaimerDialog}>
+            <div
+              className={classes.closeDialogX}
+              onClick={this.closeDisclaimerDialog}
+            >
               x
             </div>
           </DialogTitle>
@@ -257,7 +282,7 @@ class Header extends React.Component {
               <Fab
                 color="primary"
                 size="small"
-                style={{width: '100px'}}
+                style={{ width: '100px' }}
                 onClick={this.closeDisclaimerDialog}
                 variant="extended"
               >
@@ -267,10 +292,19 @@ class Header extends React.Component {
           </DialogContent>
         </Dialog>
 
-        <Dialog onClose={this.closeUserPrivacyStatement} aria-labelledby="customized-dialog-title" open={this.state.isUserPrivacyStatementDialogOpen}>
-          <DialogTitle id="customized-dialog-title" onClose={this.closeUserPrivacyStatement} className={classes.dialogTitle}>
+        <Dialog
+          onClose={this.closeUserPrivacyStatement}
+          open={isUserPrivacyStatementDialogOpen}
+        >
+          <DialogTitle
+            onClose={this.closeUserPrivacyStatement}
+            className={classes.dialogTitle}
+          >
             AsylumConnect User Privacy Statement
-            <div className={classes.closeDialogX} onClick={this.closeUserPrivacyStatement}>
+            <div
+              className={classes.closeDialogX}
+              onClick={this.closeUserPrivacyStatement}
+            >
               x
             </div>
           </DialogTitle>
@@ -287,7 +321,7 @@ class Header extends React.Component {
                 color="primary"
                 onClick={this.closeUserPrivacyStatement}
                 size="small"
-                style={{width: '100px'}}
+                style={{ width: '100px' }}
                 variant="extended"
               >
                 Ok
@@ -295,8 +329,6 @@ class Header extends React.Component {
             </MuiThemeProvider>
           </DialogContent>
         </Dialog>
-
-
       </header>
     );
   }

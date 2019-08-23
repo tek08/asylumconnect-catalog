@@ -295,11 +295,13 @@ class Header extends React.Component {
             </div>
           </DialogTitle>
           <DialogContent>
-            The AsylumConnect team will do its best to confirm basic facts about service providers listed on this
-            website. However, we lack the necessary resources to fully vet service providers and make no representations
-            regarding the viability or capabilities of any such providers. Consequently, AsylumConnect assumes no
-            responsibility for the actions of providers listed on this website and asylum seekers who contact any such
-            providers do so at their own risk.
+            The AsylumConnect team will do its best to confirm basic facts about
+            service providers listed on this website. However, we lack the
+            necessary resources to fully vet service providers and make no
+            representations regarding the viability or capabilities of any such
+            providers. Consequently, AsylumConnect assumes no responsibility for
+            the actions of providers listed on this website and asylum seekers
+            who contact any such providers do so at their own risk.
           </DialogContent>
           <DialogContent className={classes.dialogOkButtonContainer}>
             <MuiThemeProvider theme={redTheme}>
@@ -336,11 +338,18 @@ class Header extends React.Component {
             </div>
           </DialogTitle>
           <DialogContent>
-            The AsylumConnect catalog uses Google Analytics with <a href="https://support.google.com/analytics/answer/2763052?hl=en">anonymized IP addresses</a> to help
-            analyze how visitors use this site. Google Analytics uses cookies, which are small text files placed on your computer, to collect
-            standard visitor behavior information in an anonymous form. No personally identifiable information is
-            collected about you, unless you explicitly submit that information on this website. If you would like to
-            opt-out of Google Analytics, you may do so by clicking <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
+            The AsylumConnect catalog uses Google Analytics with&nbsp;
+            <a href="https://support.google.com/analytics/answer/2763052?hl=en">
+              anonymized IP addresses
+            </a>
+            &nbsp;to help analyze how visitors use this site. Google Analytics
+            uses cookies, which are small text files placed on your computer, to
+            collect standard visitor behavior information in an anonymous form.
+            No personally identifiable information is collected about you,
+            unless you explicitly submit that information on this website. If
+            you would like to opt-out of Google Analytics, you may do so by
+            clicking&nbsp;
+            <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
           </DialogContent>
           <DialogContent className={classes.dialogOkButtonContainer}>
             <MuiThemeProvider theme={redTheme}>

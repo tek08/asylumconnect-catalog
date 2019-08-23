@@ -6,8 +6,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
-import { red, blue } from '@material-ui/core/colors';
-
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

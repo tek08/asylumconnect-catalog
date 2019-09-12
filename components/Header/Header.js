@@ -1,15 +1,15 @@
 import React from 'react';
-import { withStyles } from '@material-ui/styles';
-import { Fab, Grid } from '@material-ui/core';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
-
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Fab, Grid } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   headerGrid: {
@@ -62,13 +62,23 @@ const styles = {
     textAlign: 'right',
   },
   clickableSubheaderText: {
+    color: 'white',
     cursor: 'pointer',
     fontWeight: 600,
+    margin: 0,
+    padding: 0,
     textDecoration: 'underline',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+    textTransform: 'none',
+    top: '-1px',
   },
   closeDialogX: {
     float: 'right',
-    cursor: 'pointer',
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '32px',
+    fontWeight: 'bold',
   },
   subheaderText: {
     textAlign: 'center',
@@ -81,6 +91,9 @@ const styles = {
   },
   dialogTitle: {
     textAlign: 'center',
+  },
+  dialogTitleClear: {
+    clear: 'both',
   },
 };
 
@@ -252,25 +265,29 @@ class Header extends React.Component {
             Asylum seekers contact service providers at their own risk.
             <br />
             Please read our complete&nbsp;
-            <span
-              tabIndex="0"
+            <Button
+              type="text"
               className={classes.clickableSubheaderText}
               onClick={this.openDisclaimerDialog}
               onKeyDown={this.openDisclaimerDialog}
-              role="link"
+              style={{
+                backgroundColor: 'transparent',
+              }}
             >
               Disclaimer
-            </span>
+            </Button>
             &nbsp;and&nbsp;
-            <span
-              tabIndex="0"
+            <Button
+              type="text"
               className={classes.clickableSubheaderText}
               onClick={this.openUserPrivacyStatement}
               onKeyDown={this.openUserPrivacyStatement}
-              role="link"
+              style={{
+                backgroundColor: 'transparent',
+              }}
             >
               User Privacy Statement
-            </span>
+            </Button>
             &nbsp;before using our catalog.
           </Grid>
         </Grid>
@@ -283,16 +300,17 @@ class Header extends React.Component {
             onClose={this.closeDisclaimerDialog}
             className={classes.dialogTitle}
           >
-            AsylumConnect Disclaimer
-            <div
+            <Button
               className={classes.closeDialogX}
               onClick={this.closeDisclaimerDialog}
               onKeyDown={this.closeDisclaimerDialog}
-              role="button"
-              tabIndex="0"
+              style={{ backgroundColor: 'transparent' }}
             >
-              x
-            </div>
+              ×
+            </Button>
+            <h4 className={classes.dialogTitleClear}>
+              AsylumConnect Disclaimer
+            </h4>
           </DialogTitle>
           <DialogContent>
             The AsylumConnect team will do its best to confirm basic facts about
@@ -326,30 +344,30 @@ class Header extends React.Component {
             onClose={this.closeUserPrivacyStatement}
             className={classes.dialogTitle}
           >
-            AsylumConnect User Privacy Statement
-            <div
+            <Button
               className={classes.closeDialogX}
               onClick={this.closeUserPrivacyStatement}
               onKeyDown={this.closeUserPrivacyStatement}
-              role="button"
-              tabIndex="0"
+              style={{ backgroundColor: 'transparent' }}
+              size="small"
             >
-              x
-            </div>
+              ×
+            </Button>
+            <h4 className={classes.dialogTitleClear}>
+              AsylumConnect User Privacy Statement
+            </h4>
           </DialogTitle>
           <DialogContent>
             The AsylumConnect catalog uses Google Analytics with&nbsp;
-            <a href="https://support.google.com/analytics/answer/2763052?hl=en">
+            <a href="https://support.google.com/analytics/answer/2763052">
               anonymized IP addresses
             </a>
             &nbsp;to help analyze how visitors use this site. Google Analytics
             uses cookies, which are small text files placed on your computer, to
             collect standard visitor behavior information in an anonymous form.
-            No personally identifiable information is collected about you,
-            unless you explicitly submit that information on this website. If
-            you would like to opt-out of Google Analytics, you may do so by
-            clicking&nbsp;
-            <a href="https://tools.google.com/dlpage/gaoptout">here</a>.
+            No personally-identifiable information is collected about you,
+            unless you explicitly submit that information on this website. You can also&nbsp;
+            <a href="https://tools.google.com/dlpage/gaoptout">opt out of Google Analytics</a>
           </DialogContent>
           <DialogContent className={classes.dialogOkButtonContainer}>
             <MuiThemeProvider theme={redTheme}>

@@ -62,19 +62,23 @@ const styles = {
     textAlign: 'right',
   },
   clickableSubheaderText: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+      textDecoration: 'underline',
+    },
     color: 'white',
     cursor: 'pointer',
     fontWeight: 600,
     margin: 0,
     padding: 0,
     textDecoration: 'underline',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
     textTransform: 'none',
     top: '-1px',
   },
   closeDialogX: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
     float: 'right',
     fontFamily: 'Open Sans, sans-serif',
     fontSize: '32px',
@@ -100,13 +104,6 @@ const styles = {
 const MOBILE_WIDTH_MAX = 1000;
 
 const redTheme = createMuiTheme({ palette: { primary: red } });
-
-function isClickEventOrEnterOrSpaceKeydown(event) {
-  return (
-    event.type !== 'keydown' ||
-    (event.type === 'keydown' && (event.keyCode === 32 || event.keyCode === 13))
-  );
-}
 
 class Header extends React.Component {
   constructor() {
@@ -137,36 +134,28 @@ class Header extends React.Component {
     this.setState({ width: window.innerWidth });
   };
 
-  openDisclaimerDialog(event) {
-    if (isClickEventOrEnterOrSpaceKeydown(event)) {
-      this.setState({
-        isDisclaimerDialogOpen: true,
-      });
-    }
+  openDisclaimerDialog() {
+    this.setState({
+      isDisclaimerDialogOpen: true,
+    });
   }
 
-  closeDisclaimerDialog(event) {
-    if (isClickEventOrEnterOrSpaceKeydown(event)) {
-      this.setState({
-        isDisclaimerDialogOpen: false,
-      });
-    }
+  closeDisclaimerDialog() {
+    this.setState({
+      isDisclaimerDialogOpen: false,
+    });
   }
 
-  openUserPrivacyStatement(event) {
-    if (isClickEventOrEnterOrSpaceKeydown(event)) {
-      this.setState({
-        isUserPrivacyStatementDialogOpen: true,
-      });
-    }
+  openUserPrivacyStatement() {
+    this.setState({
+      isUserPrivacyStatementDialogOpen: true,
+    });
   }
 
-  closeUserPrivacyStatement(event) {
-    if (isClickEventOrEnterOrSpaceKeydown(event)) {
-      this.setState({
-        isUserPrivacyStatementDialogOpen: false,
-      });
-    }
+  closeUserPrivacyStatement() {
+    this.setState({
+      isUserPrivacyStatementDialogOpen: false,
+    });
   }
 
   render() {
@@ -266,25 +255,15 @@ class Header extends React.Component {
             <br />
             Please read our complete&nbsp;
             <Button
-              type="text"
               className={classes.clickableSubheaderText}
               onClick={this.openDisclaimerDialog}
-              onKeyDown={this.openDisclaimerDialog}
-              style={{
-                backgroundColor: 'transparent',
-              }}
             >
               Disclaimer
             </Button>
             &nbsp;and&nbsp;
             <Button
-              type="text"
               className={classes.clickableSubheaderText}
               onClick={this.openUserPrivacyStatement}
-              onKeyDown={this.openUserPrivacyStatement}
-              style={{
-                backgroundColor: 'transparent',
-              }}
             >
               User Privacy Statement
             </Button>
@@ -303,8 +282,6 @@ class Header extends React.Component {
             <Button
               className={classes.closeDialogX}
               onClick={this.closeDisclaimerDialog}
-              onKeyDown={this.closeDisclaimerDialog}
-              style={{ backgroundColor: 'transparent' }}
             >
               ×
             </Button>
@@ -347,9 +324,6 @@ class Header extends React.Component {
             <Button
               className={classes.closeDialogX}
               onClick={this.closeUserPrivacyStatement}
-              onKeyDown={this.closeUserPrivacyStatement}
-              style={{ backgroundColor: 'transparent' }}
-              size="small"
             >
               ×
             </Button>
